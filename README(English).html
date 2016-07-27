@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<title>yiRanAPI and ERROR TABLE</title>
+</head>
+<body>
+
+<div class="container-fluid">
+<center>
+  <h1>YiRan API</h1>
+  <h5><small>Author
+:Yikalous Studio
+</small></h5>
+  </center>
+  <p class="text-center">
+ 	Time is a bird for ever on the wing.----T.W.Robertson<cite title="British Dramatist">(A British Dramatist)</cite>
+  </p>
+  <br />
+  <p class="text-left">
+ yiRan is a simple and  practical javascript plugin .It can let you conveniently diy a list of random numbers and probability to generate random number.</p>
+  <p>:) We develop this plugin to save user's time of 10 minutes, rather than be confused by JS complex float calculations which make you have a headache.</p><p>Js own random function--Math.random(),provides the function which is very limited,It can only allow you to select a number range to get a random number.<br/>However, in the actual development random access is very diverse.Thus,yiRan provides<a href="#diy">The custom of random Numbers</a>which will be a good way to meet your demand.
+  </p>
+  <br />
+  <br />
+   <p class="text-center">
+  <h3 class="text-center">30s learn to use yiRan</h3>
+  <br />
+   1、Import yiRan
+   <br />
+   <br/>
+  <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="com">&lt;script language="javascript" src="yiRan.js"&gt;&lt;/script&gt;</span></code></pre></div>
+  <br/>
+  2、How to call yiRan 
+  <pre class="prettyprint prettyprinted"><span class="pln">
+  yiRan(num1,num2,accuracy,mode,percent);
+  </span></pre>
+  <br />
+  <br />
+   &nbsp;&nbsp;&nbsp; (1)、Simple usage
+：
+<pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan();</span>
+<span class="pln">//When there are no parameters, a random number in the range [0.0, 1.0) will be return. The accuracy of the random number is 0.1.
+</span>
+<span class="pln">//such as one of the 0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0
+</span>
+</pre>
+<pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan(num1);</span>
+<span class="pln">//When there is only one parameter, it will random return a integer between num1 and num1+1, with equal probability. The accuracy of the random number is 1.
+</span>
+<span class="pln">//such as one of num1 and num1+1</span>
+</pre>
+<pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan(num1,num2);</span>
+<span class="pln">//When there are two parameters, a random integer in the range [num1, num2] will be return, with equal probability. The accuracy of the random number is 1.
+</span>
+<span class="pln">//such as one of num1 and num1+1</span>
+</pre>
+<pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan(num1,num2,accuracy);</span>
+<span class="pln">//When there are three parameters, a random integer in the range [num1, num2] will be return, with equal probability. It is equivalent to mode=0
+</span>
+</pre>
+<pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan(num1,num2,accuracy,mode);</span>
+<span class="pln">//When there are four parameters, a random integer in the range [num1, num2] will be return, with equal probability. It is equivalent to mode=0
+.</span>
+<span class="pln">//It is error when mode!=0</span>
+</pre>
+ <br />
+  <br />
+   <h3 class="text-center">More usage of yiRan
+</h3>
+   &nbsp;&nbsp;&nbsp; (2), mode usage
+：
+   <pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan(num1,num2,accuracy,mode,percent);</span>
+<span class="pln">//Mode can only be equal to 0 or 1 or 2
+</span>
+<span class="pln">//num1<=num2</span>
+<span class="pln">//num1+k*accuracy=num2,k∈Z(K as integer
+)</span>
+<span class="pln"> 
+/*
+ *1.Mode usage
+,mode=0,Returns the num1---num2 random number in accordance with the precision. The percent parameter can be missing.
+
+ *2.Mode usage,mode=1,In accordance with the definition of probability, precision return num1---num2 random number. Percent parameters need to be
+
+ *
+ *   percent parameter data type
+ is object,
+ *   Parameter format for {'num1': probability,'numl+accuracy': probability ~~~~~~~'num2': probability}
+
+ *   Requires probability and almost 1 (difference is less than 0.1), otherwise the error, the parameter is not standardized
+
+ * 
+ *
+ *3.Mode usage, mode=2, in accordance with the custom probability, the number of random return of the array. Parameters num2, accuracy, num1 is invalid, but still need to fill in
+
+ * 
+ *   Percent parameter data type is object
+
+ *   Parameter format for custom number {'': 'probability'}
+
+ *   Custom number is not limited to the requirements of the -2^32+1---2^32, the probability and the 1, otherwise the error, the parameter is not standardized
+
+ */
+ </span>
+</pre>
+  </p>
+  <p>
+  <h3 class="text-center">parameter list
+</h3>
+  <table class="table table-bordered" style="text-align:center;">
+  <tr>
+ <th width="30%" class="" style="text-align:center;">parameter
+</th><th style="text-align:center;">Effect</th>
+ </tr>
+ <tr>
+ <td>num1</td>
+ <td>Mode=0,1, at the beginning of random number one end
+</td>
+ </tr>
+ <tr>
+ <td>num2</td>
+ <td>mode=0,1, one end of random number is </td>
+
+ </tr>
+ <tr>
+ <td>accuracy（accuracy
+）</td>
+ <td>Mode=0,1, from num1 to num2, such as the precision is 2, then the random number list from 2 to num2<br /> num1 in turn
+
+ Random sequence table is: num1+2, num1, num1+4,..., num2
+<br />
+ If the accuracy is 0.2, then the random number list from num1 to add 0.2 to num2
+<br />
+ Random sequence table:
+num1,num1+0.2,num1+0.4,......,num2
+ </td>
+ </tr>
+ <tr>
+ <td>mode</td>
+ <td>The default value is 0, the effective value is 0,1,2, the control plug-in operation mode </td>
+
+ </tr> 
+ <tr>
+ <td>Percent (random number probability distribution) </td> mode=1
+
+ <td>In accordance with the definition of probability, precision return num1---num2 random number. The need for percent parameters, percent parameters of the data type object,
+
+ <br /> Parameter format for {'num1': probability,'numl+accuracy': probability ~~~~~~~'num2': probability}
+
+ <br />  Requires probability and almost 1 (difference is less than 0.1), otherwise the error, the parameter is not standardized
+
+ <br />For example： <pre class="prettyprint prettyprinted">
+ <span class="pln">var num1=1,num2=5,accuracy=1,mode=1;</span>
+ <span class="pln">percent={
+ 	   '1':0.2,
+ 	   '2':0.3,
+ 	   '3':0.2,
+ 	   '4':0.1,
+ 	   '5':0.2
+ 	          }//Percent content must be related to num1, num2, accuracy corresponding to </span>
+
+ <span class="pln">yiRan(num1,num2,accuracy,mode,percent);//Return random number by probability
+</span></pre>
+ </td>
+ </tr>
+ <tr>
+ <td><a name="diy"></a>when the mode=2,it is the percent</td>
+ <td> Percent parameter data type is object
+
+ <br /> Parameter format is{'Custom number
+':'Manic '}
+ <br />Custom number is not limited to the requirements of the -2^32+1---2^32, the probability and the 1, otherwise the error, the parameter is not standardized
+
+ For example： <pre class="prettyprint prettyprinted">
+ <span class="pln">var num1=1,num2=5,accuracy=1;//These three parameters are not used, but still have to write
+
+ var mode=2;</span>
+ <span class="pln">percent={
+ 	   '10':0.2,
+ 	   '0.2':0.3,
+ 	   '315':0.2,
+ 	   'Sample
+':0.1,
+ 	   'yika':0.2
+ 	          }</span>
+ <span class="pln">yiRan(num1,num2,accuracy,mode,percent);//Return random number by probability
+</span></pre>
+ </td>
+ </tr> 
+</table>
+  </p>
+  <br />
+  <br />
+ <p>
+  <h3 class="text-center">Error Code List
+</h3>
+  <table class="table table-bordered" style="text-align:center;">
+<tr><th width="30%">error code
+</th><th>explain</th></tr>
+<tr><td>error:001</td><td>Num1 or num2 data types are illegal, please make sure they are numeric
+</td></tr>
+<tr><td>error:002</td><td>Accuracy data type is illegal, please make sure it is numeric
+</td></tr>
+<tr><td>error:003</td><td>Mode illegal, please make sure it is numeric, and that the value can only be removed from the 0,1,2
+</td></tr>
+<tr><td>error:004</td><td>Num2 must be greater than or equal to num1
+</td></tr>
+<tr><td>error:005</td><td>Num1 and num2 and accuracy no relationship, please ensure that the num1+k*accuracy=num2, K, Z (K as integer)
+</td></tr>
+<tr><td>error:006</td><td>Percent data type is illegal, please make sure it is object
+</td></tr>
+<tr><td>error:007</td><td>Percent data is illegal, please make sure
+:<br />
+1、Probability is the number
+<br />
+2、The addition of probability value almost 1 (with 1 difference in 0.1)
+<br />
+3、Percent keys are strings, and with num1, num2, accuracy corresponding, not missing, not much.
+<br />
+<h4>Error sample
+:</h4><pre class="prettyprint prettyprinted">
+ <span class="pln">var num1=1,num2=5,accuracy=1,mode=1;</span>
+ <span class="pln">percent={
+ 	   '1':0.2,
+ 	   '2':0.3,
+ 	   '3':0.2,
+ 	   '5':0.3
+ 	          }//The content of percent must be relative to num1, num2, and accuracy.
+</span>
+ <span class="pln">yiRan(num1,num2,accuracy,mode,percent);//Return random number by probability
+
+ // Error: percent missing'0.4'
+</span></pre>
+
+</td></tr>
+<tr><td>error:008</td><td>mode=2,Percent data is illegal, please make sure
+：<br />
+1、Probability is the number
+<br />
+2、The addition of probability value almost 1 (with 1 difference in 0.1)
+<br />
+<h4>Error sample
+:</h4><pre class="prettyprint prettyprinted">
+ <span class="pln">var num1=1,num2=5,accuracy=1,mode=1;</span>
+ <span class="pln">percent={
+ 	   'bili':0.2,
+ 	   'yika':0.1,
+ 	   '3':0.2,
+ 	   '5':0.3
+ 	          }</span>
+ <span class="pln">yiRan(num1,num2,accuracy,mode,percent);//Return random number by probability
+
+ //  The reason for the error: probability value and differ with 1 0.2 percent
+
+</span></pre>
+</td></tr>
+
+  </table>
+ </p>
+</div>
+<div class="container">
+<p class="text-left">
+<h5>:)  <small>please mark in Github.If you like our work,please star or fork it.And if you find any bugs or places to be improved,please leave a message to inform us and improve it together.Thank you very much.</small></h5>
+</p>
+</div>
+</body>
+</html>

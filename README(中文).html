@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<title>yiRan文档和错误代码表</title>
+</head>
+<body>
+
+<div class="container-fluid">
+<center>
+  <h1>YiRan API</h1>
+  <h5><small>作者:Yikalous 工作室</small></h5>
+  </center>
+  <p class="text-center">
+ 	时间是一只永远飞翔的鸟.----T.W.Robertson<cite title="British Dramatist">(英国著名戏剧家)</cite>
+  </p>
+  <br />
+  <p class="text-left">
+  yiRan是一款简单、实用的javascript插件，可以让你方便的自定义随机数列表、概率来生成随机数。</p>
+  <p>我们开发这个插件的初衷是希望可以节省使用者10分钟的时间，而不是为js的复杂的浮点计算头疼。</p><p>js自带的随机数Math.random()所提供的功能十分有限，它只能让你选取一个数字区间来获取随机数。<br/>然而实际开发中随机数的获取是非常多样的，yiRan提供的<a href="#diy">自定义随机数</a>可以很好地满足你的需求。
+  </p>
+  <br />
+  <br />
+   <p class="text-center">
+  <h3 class="text-center">30s学会使用yiRan</h3>
+  <br />
+   1、引入yiRan文件
+   <br />
+   <br/>
+  <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="com">&lt;script src="yiRan.js"&gt;&lt;/script&gt;</span></code></pre></div>
+  <br/>
+  2、调用yiRan函数：
+  <pre class="prettyprint prettyprinted"><span class="pln">
+  yiRan(num1,num2,accuracy,mode,percent);
+  </span></pre>
+  <br />
+  <br />
+   &nbsp;&nbsp;&nbsp; 一、简便用法：
+<pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan();</span>
+<span class="pln">//没有参数时，等概率返回0-1，精度为0.1的随机数</span>
+<span class="pln">//即0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0中的一个</span>
+</pre>
+<pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan(num1);</span>
+<span class="pln">//只有一个参数,等概率返回num1---num1+1的随机整数，即精度为1</span>
+<span class="pln">//即num1和num1+1中的一个</span>
+</pre>
+<pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan(num1,num2);</span>
+<span class="pln">//只有两个参数,等概率返回num1---num2的连续区间的随机整数,即精度为1</span>
+<span class="pln">//即num1和num1+1中的一个</span>
+</pre>
+<pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan(num1,num2,accuracy);</span>
+<span class="pln">//只有三个参数,等概率返回num1---num2的连续区间的规定精度的随机数，这里相当于mode=0</span>
+</pre>
+<pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan(num1,num2,accuracy,mode);</span>
+<span class="pln">//只有四个参数,等概率返回num1---num2的连续区间的规定精度的随机数。</span>
+<span class="pln">//mode!=0时报错</span>
+</pre>
+ <br />
+  <br />
+   <h3 class="text-center">yiRan的更多用法</h3>
+   &nbsp;&nbsp;&nbsp; 二、模式用法：
+   <pre class="prettyprint prettyprinted"><span class="pln">var ran=yiRan(num1,num2,accuracy,mode,percent);</span>
+<span class="pln">//mode只能等于0或1或2</span>
+<span class="pln">//num1<=num2</span>
+<span class="pln">//num1+k*accuracy=num2,k∈Z(k为整数)</span>
+<span class="pln"> 
+/*
+ *1.模式用法,mode=0,按照精度返回num1---num2的随机数.可以缺少percent参数
+ *2.模式用法,mode=1,按照自定义概率、精度返回num1---num2的随机数.需要percent参数
+ *
+ *   percent参数数据类型为object,
+ *   参数格式为{'num1':概率,'numl+accuracy':概率~~~~~~~'num2':概率}
+ *   要求概率和几乎1（差值小于0.1）,否则报错,参数不规范
+ * 
+ *
+ *3.模式用法,mode=2,按照自定义概率、自定义数组返回的随机数.参数num1、num2、accuracy无效,但仍需要填写
+ * 
+ *   percent参数数据类型是object
+ *   参数格式为{'自定义数字':'概率'}
+ *   自定义数字不限,要求在-2^32+1---2^32之间,概率和为1,否则报错,参数不规范
+ */
+ </span>
+</pre>
+  </p>
+  <p>
+  <h3 class="text-center">参数列表</h3>
+  <table class="table table-bordered" style="text-align:center;">
+  <tr>
+ <th width="30%" class="" style="text-align:center;">参数</th><th style="text-align:center;">作用</th>
+ </tr>
+ <tr>
+ <td>num1</td>
+ <td>mode=0,1时,随机数开始的一端</td>
+ </tr>
+ <tr>
+ <td>num2</td>
+ <td>mode=0,1时,随机数结束的一端</td>
+ </tr>
+ <tr>
+ <td>accuracy（精度）</td>
+ <td>mode=0,1时,从num1到num2的方式，例如精度为2，那么随机数列表从num1依次加2至num2<br />
+ 随机数列表为:num1,num1+2,num1+4,......,num2<br />
+ 若精度为0.2,那么随机数列表从num1依次加0.2至num2<br />
+ 随机数列表为:num1,num1+0.2,num1+0.4,......,num2
+ </td>
+ </tr>
+ <tr>
+ <td>mode(模式)</td>
+ <td>默认值为0，有效取值为0,1,2,控制插件运行模式</td>
+ </tr> 
+ <tr>
+ <td>mode=1时的percent(随机数概率分配)</td>
+ <td>按照自定义概率、精度返回num1---num2的随机数.需要percent参数,percent参数数据类型为object,
+ <br /> 参数格式为{'num1':概率,'numl+accuracy':概率~~~~~~~'num2':概率}
+ <br />  要求概率和几乎1（差值小于0.1）,否则报错,参数不规范
+ <br />举个栗子： <pre class="prettyprint prettyprinted">
+ <span class="pln">var num1=1,num2=5,accuracy=1,mode=1;</span>
+ <span class="pln">percent={
+ 	   '1':0.2,
+ 	   '2':0.3,
+ 	   '3':0.2,
+ 	   '4':0.1,
+ 	   '5':0.2
+ 	          }//percent的内容必须与num1,num2,accuracy相对应</span>
+ <span class="pln">yiRan(num1,num2,accuracy,mode,percent);//按概率比返回随机数</span></pre>
+ </td>
+ </tr>
+ <tr>
+ <td><a name="diy"></a>mode=2时的percent(百分比)</td>
+ <td> percent参数数据类型是object
+ <br /> 参数格式为{'自定义数字':'概率'}
+ <br />自定义数字不限,要求在-2^32+1---2^32之间,概率和为1,否则报错,参数不规范<br />
+ 举个栗子： <pre class="prettyprint prettyprinted">
+ <span class="pln">var num1=1,num2=5,accuracy=1;//这三个参数没有什么用，但依然要写
+ var mode=2;</span>
+ <span class="pln">percent={
+ 	   '10':0.2,
+ 	   '0.2':0.3,
+ 	   '315':0.2,
+ 	   '样例':0.1,
+ 	   'yika':0.2
+ 	          }</span>
+ <span class="pln">yiRan(num1,num2,accuracy,mode,percent);//按概率比返回随机数</span></pre>
+ </td>
+ </tr> 
+</table>
+  </p>
+  <br />
+  <br />
+ <p>
+  <h3 class="text-center">错误代码列表</h3>
+  <table class="table table-bordered" style="text-align:center;">
+<tr><th width="30%">错误代码</th><th>解释</th></tr>
+<tr><td>error:001</td><td>num1或num2数据类型非法,请确保它们是数字</td></tr>
+<tr><td>error:002</td><td>accuracy数据类型非法,请确保它是数字</td></tr>
+<tr><td>error:003</td><td>mode非法,请确保它是数字,且值只能取0,1,2</td></tr>
+<tr><td>error:004</td><td>num2必须大于等于num1</td></tr>
+<tr><td>error:005</td><td>num1和num2和accuracy不成对应关系,请确保num1+k*accuracy=num2,k∈Z(k为整数)</td></tr>
+<tr><td>error:006</td><td>percent数据类型非法，请确保它是object</td></tr>
+<tr><td>error:007</td><td>percent数据非法,请确保:<br />
+1、概率均为数字<br />
+2、概率值和几乎为1（与1差值在0.1内）<br />
+3、percent的键均为字符串，且与num1，num2，accuracy相对应，不缺少，也不多。<br />
+<h4>错误样例:</h4><pre class="prettyprint prettyprinted">
+ <span class="pln">var num1=1,num2=5,accuracy=1,mode=1;</span>
+ <span class="pln">percent={
+ 	   '1':0.2,
+ 	   '2':0.3,
+ 	   '3':0.2,
+ 	   '5':0.3
+ 	          }//percent的内容必须与num1,num2,accuracy相对应</span>
+ <span class="pln">yiRan(num1,num2,accuracy,mode,percent);//按概率比返回随机数
+ //  错误原因：percent缺少'0.4'</span></pre>
+
+</td></tr>
+<tr><td>error:008</td><td>mode=2,自定义状态下的percent数据非法，请确保：<br />
+1、概率均为数字<br />
+2、概率值和几乎为1（与1差值在0.1内）<br />
+<h4>错误样例:</h4><pre class="prettyprint prettyprinted">
+ <span class="pln">var num1=1,num2=5,accuracy=1,mode=1;</span>
+ <span class="pln">percent={
+ 	   '哔哩':0.2,
+ 	   'yika':0.1,
+ 	   '3':0.2,
+ 	   '5':0.3
+ 	          }</span>
+ <span class="pln">yiRan(num1,num2,accuracy,mode,percent);//按概率比返回随机数
+ //  错误原因：percent概率值和与1相差0.2</span></pre>
+</td></tr>
+
+  </table>
+ </p>
+</div>
+<div class="container">
+<p class="text-left">
+<h5>:)  <small>联系邮箱：暂时没有,请在github上留言,如果喜欢，请star或fork我们的项目，如果你发现了bug以及任何可以改进的地方，请留言或帮我们改进。Thank you very much  :)</small></h5>
+</p>
+</div>
+</body>
+</html>
