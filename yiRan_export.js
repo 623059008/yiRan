@@ -192,6 +192,7 @@
       }
     }
     if (this._k != 2) {
+      aG = _S(aG);
       if (aG.indexOf("+") == -1) {
         aG = _I(aG);
         var _pl = new Array();
@@ -247,3 +248,4 @@
     }
   }
 })(parseInt, parseFloat, String);
+module.exports = this;
